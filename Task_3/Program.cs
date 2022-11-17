@@ -30,38 +30,38 @@ void PrintArray(int[,] image)
 
 int MaxArray(int[,] image) // Сумма максимумов.
 {
-    int tempMax1 = image[0, 0];
-    int tempMax2 = image[1, 0];
-    for (int i = 0; i <= image.GetLength(0); i++)
+    int sum = 0;
+    for (int j = 0; j < image.GetLength(0); j++)
     {
-        if (tempMax2 < image[1, i])
+        int tempMax = image[j, 0];
+        for (int i = 0; i < image.GetLength(1); i++)
         {
-            tempMax2 = image[1, i];
+            if (tempMax < image[j, i])
+            {
+                tempMax = image[j, i];
+            }
         }
-        if (tempMax1 < image[0, i])
-        {
-            tempMax1 = image[0, i];
-        }
+        sum += tempMax;
     }
-    return tempMax1 + tempMax2;
+    return sum;
 }
 
 int MinArray(int[,] image) // Сумма минимумов.
 {
-    int tempMin1 = image[0, 0];
-    int tempMin2 = image[1, 0];
-    for (int i = 0; i <= image.GetLength(0); i++)
+    int sum = 0;
+    for (int j = 0; j < image.GetLength(1); j++)
     {
-        if (tempMin2 > image[1, i])
+        int tempMin = image[0, j];
+        for (int i = 0; i < image.GetLength(0); i++)
         {
-            tempMin2 = image[1, i];
+            if (tempMin > image[i, j])
+            {
+                tempMin = image[i, j];
+            }
         }
-        if (tempMin1 > image[0, i])
-        {
-            tempMin1 = image[0, i];
-        }
+        sum += tempMin;
     }
-    return tempMin1 + tempMin2;
+    return sum;
 }
 
 int[,] matrix = new int[2, 3];
